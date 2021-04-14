@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="AT_HomeTask4">
+  <test name="AutomationPractice Tests Chrome">
+    <parameter name="testDataFileName" value="otherEnv.properties" />
+    <classes>
+      <class name="com.amazon.SearchTest" />
+      <class name="com.amazon.ChangeCurrencyTest" />
+      <class name="com.amazon.AddToBasketTest" />
+      <class name="com.amazon.CreateAccountFailTest" />
+      <class name="com.amazon.SignInFailTest" />
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
