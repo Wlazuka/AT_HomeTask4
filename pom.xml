@@ -12,13 +12,19 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <version.download-maven-plugin>1.6.1</version.download-maven-plugin>
+        <selenium.grid.url>http://localhost:4444/wd/hub</selenium.grid.url>
+
+        <version.guava>30.1-jre</version.guava>
+        <version.slf4j.nop>2.0.0-alpha1</version.slf4j.nop>
+        <version.log4j>1.2.17</version.log4j>
+
         <version.chromedriver>89.0.4389.23</version.chromedriver>
         <md5.chromedriver>0bf4bc39f34cee67f5f95afd8a24c191</md5.chromedriver>
-        <version.download-maven-plugin>1.6.1</version.download-maven-plugin>
+
         <version.geckodriver>v0.29.0</version.geckodriver>
         <md5.geckodriver>8e19f65e730bd5960e87c7e42c88c5a7</md5.geckodriver>
-        <version.edgedriver>89.0.774.63</version.edgedriver>
-        <md5.edgedriver>6a82870f093a9a7d7972a4cfa331f72c</md5.edgedriver>
+
         <version.surefire.plugin>3.0.0-M5</version.surefire.plugin>
         <version.aspectj>1.9.6</version.aspectj>
 
@@ -39,12 +45,6 @@
             <groupId>com.googlecode.maven-download-plugin</groupId>
             <artifactId>download-maven-plugin</artifactId>
             <version>${version.download-maven-plugin}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>30.1-jre</version>
         </dependency>
 
         <dependency>
@@ -74,17 +74,22 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-nop</artifactId>
-            <version>2.0.0-alpha1</version>
+            <version>${version.slf4j.nop}</version>
         </dependency>
 
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <version>${version.log4j}</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${version.guava}</version>
+        </dependency>
     </dependencies>
+
     <build>
         <resources>
             <resource>
@@ -98,61 +103,7 @@
             </testResource>
         </testResources>
 
-
-
         <plugins>
-            <!-- Downloading chrome driver executable -->
-            <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
-                <artifactId>download-maven-plugin</artifactId>
-                <version>${version.download-maven-plugin}</version>
-                <executions>
-                    <execution>
-                        <id>install-chrome-driver-windows32</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>https://chromedriver.storage.googleapis.com/${version.chromedriver}/chromedriver_win32.zip</url>
-                            <unpack>true</unpack>
-                            <outputDirectory>${basedir}/${driver.folder}</outputDirectory>
-                            <md5>${md5.chromedriver}</md5>
-                            <checkSignature>true</checkSignature>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>install-gecko-driver-windows32</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>https://github.com/mozilla/geckodriver/releases/download/${version.geckodriver}/geckodriver-${version.geckodriver}-win64.zip</url>
-                            <unpack>true</unpack>
-                            <outputDirectory>${basedir}/${driver.folder}</outputDirectory>
-                            <md5>${md5.geckodriver}</md5>
-                            <checkSignature>true</checkSignature>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>install-edge-driver-windows32</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <configuration>
-                            <url>https://msedgedriver.azureedge.net/${version.edgedriver}/edgedriver_win64.zip</url>
-                            <unpack>true</unpack>
-                            <outputDirectory>${basedir}/${driver.folder}</outputDirectory>
-                            <md5>${md5.edgedriver}</md5>
-                            <checkSignature>true</checkSignature>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -168,6 +119,7 @@
                         <driver.path>${driver.folder}</driver.path>
                         <testdata.property.path>${testdata.property.path}</testdata.property.path>
                         <allure.results.directory>${basedir}/${allure.results.path}</allure.results.directory>
+                        <selenium.grid.url>${selenium.grid.url}</selenium.grid.url>
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>

@@ -3,7 +3,6 @@ package com.automationpractice;
 import com.automationpractice.utils.PropertyManager;
 import com.automationpractice.valueObjects.Customer;
 
-import org.checkerframework.checker.units.qual.C;
 import org.testng.annotations.Test;
 
 public class CreateAccountTest extends BaseTest {
@@ -12,13 +11,12 @@ public class CreateAccountTest extends BaseTest {
     private static final String CREATE_ACC_PAGE_TITLE = PropertyManager.getProperty("createAccount.pageTitle");
 
     @Test()
-    public void createAccountTest() throws InterruptedException {
+    public void createAccountTest(){
 
         homePage.open()
                 .signIn();
         signInPage
                 .createAccount(customer.email);
-        Thread.sleep(5000);
         createAccountPage
                 .checkPageTitle(CREATE_ACC_PAGE_TITLE);
         createAccountPage

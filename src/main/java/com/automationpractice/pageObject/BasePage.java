@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.w3c.dom.html.HTMLImageElement;
 
 public class BasePage extends Page {
 
@@ -25,7 +26,6 @@ public class BasePage extends Page {
     }
 
     public void checkPageTitle(String title) {
-        wait.forPageToLoad();
         Assert.assertEquals(driver.getTitle(), title);
     }
 
