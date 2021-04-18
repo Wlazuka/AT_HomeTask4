@@ -17,5 +17,4 @@ public class MyAccountPage extends BasePage {
     public boolean welcomeMsgIsDisplayed(){
         return welcomeMsg.isDisplayed();
     }
-
 }
