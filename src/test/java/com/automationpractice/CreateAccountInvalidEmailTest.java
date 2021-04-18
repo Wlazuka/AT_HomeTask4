@@ -1,6 +1,7 @@
 package com.automationpractice;
 
 import com.automationpractice.utils.PropertyManager;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CreateAccountInvalidEmailTest extends BaseTest {
@@ -14,6 +15,6 @@ public class CreateAccountInvalidEmailTest extends BaseTest {
                 .signIn();
         signInPage
                 .createAccount(INVALID_EMAIL);
-        System.out.println(signInPage.alertText());
+        Assert.assertEquals(signInPage.alertText(), INVALID_EMAIL_ALERT);
     }
 }

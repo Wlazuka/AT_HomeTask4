@@ -30,6 +30,7 @@ public class SignInPage extends BasePage {
     }
 
     public SignInPage createAccount(String text) {
+        wait.forElementToLoad(createAccountEmailField);
         enterTextIntoField(createAccountEmailField, text);
         createAccountButton.click();
         return this;
@@ -50,15 +51,15 @@ public class SignInPage extends BasePage {
         return this;
     }
 
-    public SignInPage alertText(){
-        alertField.getText();
-        return this;
+    public String alertText() {
+        return alertField.getText();
     }
 
-    public SignInPage signIn(String email, String password){
+    public SignInPage signIn(String email, String password) {
         provideEmail(email);
         providePassword(password);
         pressSingInButton();
         return this;
     }
+
 }

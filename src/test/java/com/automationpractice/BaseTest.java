@@ -19,6 +19,7 @@ public abstract class BaseTest {
     protected SearchResultsPage searchResultsPage;
     protected CreateAccountPage createAccountPage;
     protected SignInPage signInPage;
+    protected MyAccountPage myAccountPage;
 
     @Parameters({"browserName", "testDataFileName"})
     @BeforeClass
@@ -31,6 +32,7 @@ public abstract class BaseTest {
         searchResultsPage = new SearchResultsPage(driver.get(), propertyManager);
         signInPage = new SignInPage(driver.get(), propertyManager);
         createAccountPage = new CreateAccountPage(driver.get(), propertyManager);
+        myAccountPage = new MyAccountPage(driver.get(), propertyManager);
     }
 
     @AfterMethod

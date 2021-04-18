@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 public class CreateAccountPage extends BasePage{
 
     @FindBy(xpath = "//input[@id='id_gender1']")
-    public WebElement title;
+    public WebElement genderCheckBox;
     @FindBy(xpath = "//input[@id='customer_firstname']")
     public WebElement firstName;
     @FindBy(xpath = "//input[@id='customer_lastname']")
@@ -60,7 +60,7 @@ public class CreateAccountPage extends BasePage{
     }
 
     public CreateAccountPage createNewAccount(Customer customer){
-        wait.forPageToLoad();
+        wait.forElementToLoad(genderCheckBox);
         enterPersonalInformation(customer);
         enterAddress(customer.address);
         submitNewAccountButton.click();
@@ -68,9 +68,10 @@ public class CreateAccountPage extends BasePage{
     }
 
     private CreateAccountPage enterPersonalInformation(Customer customer) {
-        title.click();
+        genderCheckBox.click();
         firstName.sendKeys(customer.name);
         lastName.sendKeys(customer.lastName);
+        emailFieldOnCreationForm.clear();
         emailFieldOnCreationForm.sendKeys(customer.email);
         passwordFieldOnCreationForm.sendKeys(customer.password);
         selectFromDropdownByValue(birthDayDropdown, customer.birthDay);
@@ -80,8 +81,8 @@ public class CreateAccountPage extends BasePage{
     }
 
     private CreateAccountPage enterAddress(Address address) {
-        addressFirstName.sendKeys(address.name);
-        addressLastName.sendKeys(address.lastName);
+//        addressFirstName.sendKeys(address.name);
+//        addressLastName.sendKeys(address.lastName);
         addressCompany.sendKeys(address.company);
         addressLine1.sendKeys(address.addressLine1);
         addressLine2.sendKeys(address.addressLine2);
