@@ -60,6 +60,7 @@ public class CreateAccountPage extends BasePage{
     }
 
     public CreateAccountPage createNewAccount(Customer customer){
+        wait.forPageToLoad();
         enterPersonalInformation(customer);
         enterAddress(customer.address);
         submitNewAccountButton.click();

@@ -22,9 +22,8 @@ public class SignInPage extends BasePage {
     @FindBy(xpath = "//button[@id='SubmitLogin']")
     public static WebElement signInButton;
 
-//    div[@id='create_account_error']//li[contains(text(),'Invalid email address.')]
-    @FindBy(xpath = "//li[contains(text(), \"Invalid email address.\")]")
-    public static WebElement invalidEmailAddressAlert;
+    @FindBy(xpath = "//div[@id='create_account_error']")
+    public static WebElement alertField;
 
     public SignInPage(WebDriver driver, PropertyManager propertyManager) {
         super(driver, propertyManager);
@@ -48,6 +47,11 @@ public class SignInPage extends BasePage {
 
     public SignInPage pressSingInButton() {
         clickOnElement(signInButton);
+        return this;
+    }
+
+    public SignInPage alertText(){
+        alertField.getText();
         return this;
     }
 

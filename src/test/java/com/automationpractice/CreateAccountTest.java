@@ -18,39 +18,6 @@ public class CreateAccountTest extends BaseTest {
         signInPage
                 .createAccount(customer.email);
         createAccountPage
-                .checkPageTitle(CREATE_ACC_PAGE_TITLE);
-        createAccountPage
                 .createNewAccount(customer);
     }
-
-//    private void checkAddressInProfile(Customer customer){
-//        checkName(customer);
-//        checkAddressDetails(customer.address);
-//    }
-
-//    private void checkName(Customer customer){
-//        if (customer.address.name.isEmpty()) {
-//            Assert.assertEquals(myAddressesPage.firstAddressName.getText(), customer.name);
-//        } else {
-//            Assert.assertEquals(myAddressesPage.firstAddressName.getText(), customer.address.name);
-//        }
-//        if (customer.address.lastName.isEmpty()) {
-//            Assert.assertEquals(myAddressesPage.firstAddressLastName.getText(), customer.lastName);
-//        } else {
-//            Assert.assertEquals(myAddressesPage.firstAddressLastName.getText(), customer.address.lastName);
-//        }
-//    }
-
-//    private void checkAddressDetails(Address address){
-//        Assert.assertEquals(myAddressesPage.firstAddressLine1.getText().trim(), address.addressLine1);
-//        Assert.assertEquals(myAddressesPage.firstAddressLine2.getText().trim(), address.addressLine2);
-//        Assert.assertEquals(myAddressesPage.firstAddressCompany.getText().trim(), address.company);
-//        Assert.assertEquals(myAddressesPage.firstAddressCity.getText().trim(), address.city + ",");
-//        Assert.assertEquals(myAddressesPage.firstAddressState.getText().trim(), address.state);
-//        Assert.assertEquals(myAddressesPage.firstAddressPostalCode.getText().trim(), address.postalCode);
-//        Assert.assertEquals(myAddressesPage.firstAddressCountry.getText().trim(), address.country);
-//        Assert.assertEquals(myAddressesPage.firstAddressHomePhone.getText().trim(), address.homePhone);
-//        Assert.assertEquals(myAddressesPage.firstAddressHomeMobilePhone.getText().trim(), address.mobilePhone);
-//        Assert.assertEquals(myAddressesPage.firstAddressAlias.getText().trim(), address.addressAlias.toUpperCase(Locale.ROOT));
-//    }
 }

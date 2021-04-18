@@ -6,6 +6,7 @@
     <parameter name="browserName" value="Chrome" />
     <classes>
       <class name="com.automationpractice.SearchTest" />
+      <class name="com.automationpractice.CreateAccountInvalidEmailTest" />
     </classes>
   </test> <!-- Test -->
 
@@ -17,11 +18,4 @@
     </classes>
   </test> <!-- Test -->
 
-  <test name="AutomationPractice Opera Tests">
-    <parameter name="testDataFileName" value="default.properties" />
-    <parameter name="browserName" value="Opera" />
-    <classes>
-      <class name="com.automationpractice.SearchTest" />
-    </classes>
-  </test> <!-- Test -->
 </suite> <!-- Suite -->

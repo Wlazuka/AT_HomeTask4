@@ -10,7 +10,6 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.Locale;
 
 public class DriverManager {
@@ -20,52 +19,56 @@ public class DriverManager {
     static final String OPERA_DRIVER_PATH = "drivers/operadriver";
 
 
-    public WebDriver getDriver(String driverType){
+    public WebDriver getDriver(String driverType) {
         return getDriver(driverType, "LOCAL");
     }
 
-    public WebDriver getDriver(String driverType, String gridMode){
-
-        WebDriver requestedDriver = null;
+    public WebDriver getDriver(String driverType, String gridMode) {
+        WebDriver requestedDriver;
         switch (driverType.toUpperCase(Locale.ROOT)) {
-            case "CHROME" :
+            case "CHROME":
                 if (gridMode.toUpperCase(Locale.ROOT).equals("GRID"))
                     requestedDriver = getRemoteDriver(CapabilityManager.getChromeOptions());
                 else requestedDriver = getLocalChrome();
-            case "FIREFOX" :
+                break;
+            case "FIREFOX":
                 if (gridMode.toUpperCase(Locale.ROOT).equals("GRID"))
-                        requestedDriver = getRemoteDriver(CapabilityManager.getFirefoxOptions());
+                    requestedDriver = getRemoteDriver(CapabilityManager.getFirefoxOptions());
                 else requestedDriver = getLocalFirefox();
-            case "OPERA" :
+                break;
+            case "OPERA":
                 if (gridMode.toUpperCase(Locale.ROOT).equals("GRID"))
-                        requestedDriver = getRemoteDriver(CapabilityManager.getOperaOptions());
+                    requestedDriver = getRemoteDriver(CapabilityManager.getOperaOptions());
                 else requestedDriver = getLocalOpera();
-
-            default: requestedDriver = getLocalChrome();
+                break;
+            default:
+                requestedDriver = getLocalChrome();
+                break;
         }
         return requestedDriver;
     }
 
-    private WebDriver getLocalChrome(){
+    private WebDriver getLocalChrome() {
         System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
         return new ChromeDriver(CapabilityManager.getChromeOptions());
     }
-    private WebDriver getLocalFirefox(){
+
+    private WebDriver getLocalFirefox() {
         System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
         return new FirefoxDriver(CapabilityManager.getFirefoxOptions());
     }
 
-    private WebDriver getLocalOpera(){
+    private WebDriver getLocalOpera() {
         System.setProperty("webdriver.opera.driver", OPERA_DRIVER_PATH);
         return new OperaDriver(CapabilityManager.getOperaOptions());
     }
 
-    private WebDriver getRemoteDriver(Capabilities capabilities){
+    private WebDriver getRemoteDriver(Capabilities capabilities) {
         WebDriver requestedDriver = null;
-        try{
+        try {
             requestedDriver = new RemoteWebDriver(new URL(System.getProperty("selenium.grid.url")), capabilities);
         } catch (MalformedURLException e) {
-            System.out.println(Arrays.toString(e.getStackTrace()));
+            e.printStackTrace();
         }
         return requestedDriver;
     }

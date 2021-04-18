@@ -1,6 +1,5 @@
 package com.automationpractice;
 
-import com.automationpractice.pageObject.SignInPage;
 import com.automationpractice.utils.PropertyManager;
 import org.testng.annotations.Test;
 
@@ -15,6 +14,6 @@ public class CreateAccountInvalidEmailTest extends BaseTest {
                 .signIn();
         signInPage
                 .createAccount(INVALID_EMAIL);
-        System.out.println(SignInPage.invalidEmailAddressAlert.getText());
+        System.out.println(signInPage.alertText());
     }
 }
